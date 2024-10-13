@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="app5.MainPage"
+             Title="Список продуктів">
+
+    <Grid RowDefinitions="*, Auto" Padding="10">
+        <!-- Таблиця товарів -->
+        <CollectionView x:Name="ItemList"
+                        ItemsSource="{Binding Items}"
+                        SelectionMode="Single"
+                        Margin="0,0,0,10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnDefinitions="*,*,*,*">
+                        <Label Text="{Binding Name}" Grid.Column="0" />
+                        <Label Text="{Binding Price, StringFormat='{}{0:C}'}" Grid.Column="1" />
+                        <Label Text="{Binding CountryOfOrigin}" Grid.Column="2" />
+                        <Label Text="{Binding PackagingDate, StringFormat='{}{0:d}'}" Grid.Column="3" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Кнопки управління -->
+        <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
+            <Button Text="Додати товар" Clicked="OnAddItemClicked" />
+            <Button Text="Видалити елемент" Clicked="OnDeleteItemClicked" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
